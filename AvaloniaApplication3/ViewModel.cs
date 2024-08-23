@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +25,6 @@ public class DiskSpaceResult
 
 public class ViewModel
 {
-
     private readonly ObservableList<DiskSpaceResult> _results;
     public INotifyCollectionChangedSynchronizedView<DiskSpaceResult> ItemsView { get; set; }
 
@@ -36,23 +34,12 @@ public class ViewModel
         _results = new();
         ItemsView = _results.CreateView(x => x).ToNotifyCollectionChanged();
 
-
         Observable
             .Interval(TimeSpan.FromSeconds(1))
             .SelectAwait(async (_, ct) => await FetchDiskUsage(ct))
             .Select(FormatDiskUsage)
             .Select(s => new DiskSpaceResult { BytesUsed = s })
             .Subscribe(next => { _results.Insert(0, next); });
-
-        Haloo = new("wirld");
-        Click = new ReactiveCommand<Unit>();
-        Click.SubscribeAwait(async (_, ct) =>
-        {
-            var o = await FetchDiskUsage(ct);
-            var r = new DiskSpaceResult { BytesUsed = FormatDiskUsage(o) };
-            _results.Insert(0, r);
-            Console.WriteLine("adding: " + r.BytesUsed);
-        });
 
         Source = new FlatTreeDataGridSource<DiskSpaceResult>(ItemsView)
         {
@@ -94,6 +81,4 @@ public class ViewModel
     }
 
     public FlatTreeDataGridSource<DiskSpaceResult> Source { get; }
-    public ReactiveCommand<Unit> Click { get; }
-    public BindableReactiveProperty<string> Haloo { get; }
 }

@@ -25,7 +25,6 @@ public class DiskSpaceResult
 
 public class ViewModel
 {
-
     private readonly ObservableCollection<DiskSpaceResult> _results;
 
     public ViewModel()
@@ -38,16 +37,6 @@ public class ViewModel
             .Select(FormatDiskUsage)
             .Select(s => new DiskSpaceResult { BytesUsed = s })
             .Subscribe(next => { _results.Insert(0, next); });
-
-        Haloo = new("wirld");
-        Click = new ReactiveCommand<Unit>();
-        Click.SubscribeAwait(async (_, ct) =>
-        {
-            var o = await FetchDiskUsage(ct);
-            var r = new DiskSpaceResult { BytesUsed = FormatDiskUsage(o) };
-            _results.Insert(0, r);
-            Console.WriteLine("adding: " + r.BytesUsed);
-        });
 
         Source = new FlatTreeDataGridSource<DiskSpaceResult>(_results)
         {
@@ -89,6 +78,4 @@ public class ViewModel
     }
 
     public FlatTreeDataGridSource<DiskSpaceResult> Source { get; }
-    public ReactiveCommand<Unit> Click { get; }
-    public BindableReactiveProperty<string> Haloo { get; }
 }
