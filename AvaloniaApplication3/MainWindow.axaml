@@ -13,6 +13,6 @@
         x:DataType="vm:ViewModel"
         Title="AvaloniaApplication3">
         <Panel Height="300">
-            <TreeDataGrid Source="{Binding Source}" />
+            <TreeDataGrid Source="{Binding Source}" Name="Tdg" />
         </Panel>
 </Window>
