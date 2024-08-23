@@ -9,8 +9,8 @@
         x:Class="AvaloniaApplication1.MainWindow"
         x:DataType="vm:ViewModel"
         Title="AvaloniaApplication1">
-    <StackPanel Spacing="9" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-        <TextBlock VerticalAlignment="Center">
+    <StackPanel Spacing="9" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Halooo" />
             <TextBlock Text="{Binding Haloo.Value}" />
         </TextBlock>
@@ -19,5 +19,6 @@
                 Background="Transparent"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" />
+        <TreeDataGrid Source="{Binding Source}"/>
     </StackPanel>
 </Window>
