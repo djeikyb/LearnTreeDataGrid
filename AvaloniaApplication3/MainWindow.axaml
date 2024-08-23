@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AvaloniaApplication3"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="149.5" Height="300.5"
+        CanResize="False"
+        Position="0 0"
+        FontSize="12"
+        FontFamily="SF Pro"
+        x:Class="AvaloniaApplication3.MainWindow"
+        x:DataType="vm:ViewModel"
+        Title="AvaloniaApplication3">
+        <Panel Height="300">
+            <TreeDataGrid Source="{Binding Source}" />
+        </Panel>
+</Window>
