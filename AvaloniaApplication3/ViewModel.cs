@@ -42,7 +42,7 @@ public class ViewModel
             .SelectAwait(async (_, ct) => await FetchDiskUsage(ct))
             .Select(FormatDiskUsage)
             .Select(s => new DiskSpaceResult { BytesUsed = s })
-            .Subscribe(next => { _results.Add(next); });
+            .Subscribe(next => { _results.Insert(0, next); });
 
         Haloo = new("wirld");
         Click = new ReactiveCommand<Unit>();
@@ -50,7 +50,7 @@ public class ViewModel
         {
             var o = await FetchDiskUsage(ct);
             var r = new DiskSpaceResult { BytesUsed = FormatDiskUsage(o) };
-            _results.Add(r);
+            _results.Insert(0, r);
             Console.WriteLine("adding: " + r.BytesUsed);
         });
 
