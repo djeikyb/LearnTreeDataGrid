@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AvaloniaApplication1"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="350" Height="600"
+        Position="0 0"
+        x:Class="AvaloniaApplication1.MainWindow"
+        x:DataType="vm:ViewModel"
+        Title="AvaloniaApplication1">
+    <StackPanel Spacing="9" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <TextBlock VerticalAlignment="Center">
+            <TextBlock Text="Halooo" />
+            <TextBlock Text="{Binding Haloo.Value}" />
+        </TextBlock>
+        <Button Content="🐙"
+                Command="{Binding Click}"
+                Background="Transparent"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" />
+    </StackPanel>
+</Window>
